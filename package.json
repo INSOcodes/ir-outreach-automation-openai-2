@@ -1,0 +1,27 @@
+{
+  "name": "lid-logo-editor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Add client logo to lid image using OpenAI's API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^4.28.0",
+    "dotenv": "^16.4.1",
+    "csv-parse": "^5.5.3",
+    "axios": "^1.6.7",
+    "nodemailer": "^6.9.9"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1"
+  }
+}

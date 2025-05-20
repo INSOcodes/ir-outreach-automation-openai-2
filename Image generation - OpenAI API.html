@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<!-- saved from url=(0107)https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&lang=javascript -->
+<html lang="en-US" class="dark" data-theme="dark" style="color-scheme: dark;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="icon" type="image/png" href="https://platform.openai.com/favicon-platform.png">
+        <link rel="icon" type="image/svg+xml" href="https://platform.openai.com/favicon-platform.svg">
+        <link rel="preconnect" href="https://cdn.openai.com/">
+        <link rel="preconnect" href="https://owz3qoiija-dsn.algolia.net/" crossorigin="">
+        <!-- Preload critical fonts -->
+        <link rel="preload" href="https://cdn.openai.com/common/fonts/openai-sans/OpenAISans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+        <link rel="preload" href="https://cdn.openai.com/common/fonts/openai-sans/OpenAISans-Semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#000000">
+        <title>Image generation - OpenAI API</title>
+        <meta name="description" content="Learn how to generate or edit images with the OpenAI API and image generation models.">
+        <link rel="manifest" href="https://platform.openai.com/manifest.json">
+
+        <!-- Facebook / LinkedIn Meta Tags -->
+        <meta property="og:title" content="Image generation - OpenAI API">
+        <meta property="og:image" content="https://cdn.openai.com/API/images/platform-opengraph.png">
+        <meta property="og:description" content="Learn how to generate or edit images with the OpenAI API and image generation models.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://platform.openai.com">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="platform.openai.com">
+        <meta property="twitter:url" content="https://platform.openai.com">
+        <meta name="twitter:title" content="Image generation - OpenAI API">
+        <meta name="twitter:description" content="Learn how to generate or edit images with the OpenAI API and image generation models.">
+        <meta name="twitter:image" content="https://cdn.openai.com/API/images/platform-opengraph.png">
+      <script type="text/javascript" async="" src="./Image generation - OpenAI API_files/dgkjq2bp"></script><script nonce="" type="module" crossorigin="" src="./Image generation - OpenAI API_files/index-BFaTYLyO.js"></script>
+      <link rel="stylesheet" crossorigin="" href="./Image generation - OpenAI API_files/Bf1rX7idX0.css">
+      <script nonce="" type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
+      <script nonce="" type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
+    <link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/aiX3NszCeK.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/CsGZne-BOR.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/Cxdcic5FgU.css"><link rel="stylesheet" href="./Image generation - OpenAI API_files/BIzaetRKef.css"><link rel="stylesheet" href="./Image generation - OpenAI API_files/BOJGmqj8x9.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/PsUMy7s5Ul.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/gYWPwrQJzm.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/_f_H0MJq9Z.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/azHenN1yXc.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/BkdTKxcFRV.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/Cf24pfjnpD.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/DPRiIEM_Sh.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/Cp4ZNf4Dd9.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/xDXiDaamco.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/DP6Y4SHP5B.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/CPwpneiCZG.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/BoFsvZBYvh.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/BV33ofHehu.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/CMWwawf11R.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/BjYOfcXsPR.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/CzJRpaRVMn.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/0vbeQ64Aqf.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/B1Gjs5h-jG.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/0XQOeb1Mw_.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/BwpjZgjTNL.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/BUSwN-JwO4.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/StzXmxZs6p.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/D72ZCCmVMI.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/EYEbrXxc58.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/DAITjHYK4y.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/Drt5lRNFYM.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/DmauzYno8H.css"><link rel="stylesheet" href="./Image generation - OpenAI API_files/CiQ8U0Gvbu.css"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/fSj4JHDMSI.js"><link rel="modulepreload" as="script" crossorigin="" href="https://platform.openai.com/static/BeCNU4welo.js"><link rel="stylesheet" href="./Image generation - OpenAI API_files/CQrHNWQgoC.css"><link rel="stylesheet" href="./Image generation - OpenAI API_files/CvBt8eD336.css"><link rel="canonical" href="https://platform.openai.com/docs/guides/image-generation"></head>
+    <body>
+        <div id="root"><div class="rl7uK"><div class="hDvly"><div class="vpev1"><span class="block _6fZQu"><div class="_5Amyn"><button id="select-trigger-radix-:r4:" type="button" class="ICo9Y" data-variant="bare" data-size="lg" data-gutter-size="sm" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r6:" data-state="closed"><span class="RWOJJ"><span class="flex items-center gap-2 font-medium"><span class="qCm0E" role="presentation" data-variant="dark" style="--avatar-size: 25px;"><div class="_9uyMP">I</div></span><span class="truncate">INSO codes</span></span></span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button><div class="u-pgg">/</div><button id="select-trigger-radix-:r7:" type="button" class="ICo9Y" data-variant="bare" data-size="lg" data-gutter-size="sm" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r9:" data-state="closed"><span class="RWOJJ"><span class="font-medium" style="color: var(--text-default);">Intimate Rose Tests</span></span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button></div></span></div><div class="Aip-a"><div class="zWMrv"><span class="block"><div class="zWMrv"><nav class="okBd0"><a class="w9s17" data-primary-nav-item="" href="https://platform.openai.com/playground"><span class="EsOWR vaD2P" data-title="Playground">Playground</span><span class="EsOWR ksWxL" data-title="Playground">Playground</span></a><a class="w9s17" data-primary-nav-item="" href="https://platform.openai.com/logs"><span class="EsOWR vaD2P" data-title="Dashboard">Dashboard</span><span class="EsOWR ksWxL" data-title="Dashboard">Dashboard</span></a><a aria-current="page" class="w9s17 _1T-tk" data-primary-nav-item="" href="https://platform.openai.com/docs"><span class="EsOWR vaD2P" data-title="Docs">Docs</span><span class="EsOWR ksWxL" data-title="Docs">Docs</span></a><a class="w9s17" data-primary-nav-item="" href="https://platform.openai.com/docs/api-reference/images"><span class="EsOWR vaD2P" data-title="API reference">API reference</span><span class="EsOWR ksWxL" data-title="API">API</span></a></nav><span data-state="closed"><a class="nav-item KAMRO" href="https://platform.openai.com/settings"><span class="vf8lG"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" data-visible=""><path fill-rule="evenodd" d="M11.568 3.5a1 1 0 0 0-.863.494l-.811 1.381A3.001 3.001 0 0 1 7.33 6.856l-1.596.013a1 1 0 0 0-.858.501l-.439.761a1 1 0 0 0-.004.992l.792 1.4a3 3 0 0 1 0 2.954l-.792 1.4a1 1 0 0 0 .004.992l.439.76a1 1 0 0 0 .858.502l1.596.013a3 3 0 0 1 2.564 1.48l.811 1.382a1 1 0 0 0 .863.494h.87a1 1 0 0 0 .862-.494l.812-1.381a3.001 3.001 0 0 1 2.563-1.481l1.596-.013a1 1 0 0 0 .86-.501l.438-.761a1 1 0 0 0 .004-.992l-.793-1.4a3 3 0 0 1 0-2.954l.793-1.4a1 1 0 0 0-.004-.992l-.439-.76a1 1 0 0 0-.858-.502l-1.597-.013a3 3 0 0 1-2.563-1.48L13.3 3.993a1 1 0 0 0-.862-.494h-.87ZM8.98 2.981A3.001 3.001 0 0 1 11.568 1.5h.87c1.064 0 2.049.564 2.588 1.481l.811 1.382a1 1 0 0 0 .855.494l1.596.013a3 3 0 0 1 2.575 1.502l.44.76a3 3 0 0 1 .011 2.975l-.792 1.4a1 1 0 0 0 0 .985l.792 1.401a3 3 0 0 1-.012 2.974l-.439.761a3.001 3.001 0 0 1-2.575 1.503l-1.597.012a1 1 0 0 0-.854.494l-.811 1.382a3.001 3.001 0 0 1-2.588 1.481h-.87a3.001 3.001 0 0 1-2.588-1.481l-.811-1.382a1 1 0 0 0-.855-.494l-1.596-.012a3.001 3.001 0 0 1-2.576-1.503l-.438-.76a3 3 0 0 1-.013-2.975l.793-1.4a1 1 0 0 0 0-.985l-.793-1.4a3 3 0 0 1 .013-2.975l.438-.761A3.001 3.001 0 0 1 5.718 4.87l1.596-.013a1 1 0 0 0 .855-.494l.81-1.382Z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M12.003 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM8.502 12a3.5 3.5 0 1 1 7 .001 3.5 3.5 0 0 1-7-.001Z" clip-rule="evenodd"></path></svg><svg width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.92084 3.32814C9.07052 3.07324 9.34406 2.91667 9.63972 2.91667H10.3648C10.6604 2.91667 10.934 3.07324 11.0836 3.32814L11.7596 4.47937C12.205 5.23782 13.0162 5.70655 13.8959 5.71371L15.2261 5.72454C15.5218 5.72695 15.794 5.88573 15.9416 6.14183L16.3072 6.77612C16.4544 7.03153 16.4556 7.34568 16.3105 7.60227L15.6503 8.7696C15.2862 9.41355 15.2291 10.1787 15.4793 10.8606C16.4549 10.9723 17.3281 11.421 17.9796 12.0874C17.9267 11.9119 17.8541 11.7408 17.7618 11.5775L17.1016 10.4101C16.9577 10.1557 16.9577 9.84437 17.1016 9.58987L17.7618 8.42255C18.1971 7.65276 18.1933 6.71033 17.7517 5.9441L17.3862 5.30981C16.9434 4.5415 16.1266 4.06515 15.2397 4.05793L13.9094 4.0471C13.6162 4.04471 13.3458 3.88847 13.1974 3.63565L12.5214 2.48443C12.0724 1.71971 11.2518 1.25 10.3648 1.25H9.63972C8.75273 1.25 7.93212 1.71971 7.4831 2.48443L6.80713 3.63565C6.65868 3.88847 6.38827 4.04471 6.09504 4.0471L4.76485 4.05793C3.87792 4.06515 3.06117 4.5415 2.61839 5.30981L2.25284 5.9441C1.81126 6.71033 1.80744 7.65276 2.24278 8.42254L2.90296 9.58987C3.04688 9.84437 3.04688 10.1557 2.90296 10.4101L2.24278 11.5775C1.80744 12.3473 1.81126 13.2897 2.25284 14.0559L2.61839 14.6902C3.06117 15.4585 3.87792 15.9349 4.76485 15.9421L6.09505 15.9529C6.38828 15.9553 6.65869 16.1115 6.80714 16.3644L7.4831 17.5156C7.93212 18.2803 8.75273 18.75 9.63972 18.75H10.3648C11.035 18.75 11.6674 18.4818 12.1301 18.0208C11.7056 17.6173 11.366 17.1252 11.141 16.5742L11.0836 16.6719C10.934 16.9268 10.6604 17.0833 10.3648 17.0833H9.63972C9.34406 17.0833 9.07052 16.9268 8.92084 16.6719L8.24489 15.5206C7.79955 14.7622 6.98832 14.2935 6.10863 14.2863L4.77843 14.2755C4.48278 14.2731 4.21053 14.1143 4.06294 13.8582L3.69739 13.2239C3.5502 12.9685 3.54893 12.6543 3.69404 12.3977L4.35421 11.2304C4.786 10.4669 4.786 9.53308 4.35421 8.7696L3.69404 7.60227C3.54893 7.34568 3.5502 7.03153 3.69739 6.77612L4.06294 6.14183C4.21053 5.88573 4.48278 5.72695 4.77843 5.72454L6.10862 5.71371C6.98831 5.70655 7.79954 5.23782 8.24488 4.47937L8.92084 3.32814ZM12.216 11.8999C12.1058 11.9989 12.0009 12.1037 11.9018 12.2138C11.3914 12.6519 10.7278 12.9167 10.0023 12.9167C8.39098 12.9167 7.08477 11.6108 7.08477 10C7.08477 8.38917 8.39098 7.08333 10.0023 7.08333C11.6136 7.08333 12.9198 8.38917 12.9198 10C12.9198 10.7257 12.6547 11.3895 12.216 11.8999ZM8.75192 10C8.75192 9.30964 9.31172 8.75 10.0023 8.75C10.6928 8.75 11.2526 9.30964 11.2526 10C11.2526 10.6904 10.6928 11.25 10.0023 11.25C9.31172 11.25 8.75192 10.6904 8.75192 10Z"></path><rect x="12" y="12" width="6" height="6" rx="3" fill="var(--green-500)"></rect></svg></span></a></span></div></span><div class="LwKwt"><button class="jYGOC" type="button" id="radix-:rh:" aria-haspopup="menu" aria-expanded="false" data-state="closed"><span class="qCm0E" role="presentation" data-variant="light"><div class="_9uyMP">A</div></span></button></div></div></div><div class="_3fO9I"><svg fill="none" xmlns="http://www.w3.org/2000/svg" width="169" height="24" viewBox="0 0 169 24"><path d="M8.11 4.452C3.958 4.452.562 7.849.562 12c0 4.152 3.396 7.549 7.548 7.549 4.151 0 7.548-3.376 7.548-7.549A7.543 7.543 0 0 0 8.11 4.452Zm0 12.392c-2.58 0-4.655-2.118-4.655-4.844 0-2.725 2.076-4.843 4.655-4.843S12.765 9.275 12.765 12c0 2.726-2.076 4.844-4.655 4.844ZM23.29 8.645c-1.363 0-2.684.545-3.376 1.468V8.855h-2.726v14.677h2.726v-5.305c.692.86 1.971 1.321 3.376 1.321 2.935 0 5.242-2.306 5.242-5.451 0-3.145-2.307-5.452-5.242-5.452Zm-.461 8.534c-1.552 0-2.936-1.216-2.936-3.082 0-1.866 1.384-3.082 2.936-3.082 1.551 0 2.935 1.216 2.935 3.082 0 1.866-1.384 3.082-2.935 3.082ZM34.948 8.645c-2.977 0-5.325 2.328-5.325 5.452s2.054 5.451 5.41 5.451c2.746 0 4.507-1.656 5.052-3.522h-2.663c-.335.776-1.278 1.32-2.41 1.32-1.406 0-2.475-.985-2.727-2.39h7.926v-1.069c0-2.851-1.992-5.242-5.263-5.242Zm-2.642 4.382c.294-1.32 1.384-2.18 2.705-2.18 1.405 0 2.474.922 2.6 2.18h-5.305ZM47.466 8.645c-1.217 0-2.495.545-3.083 1.447V8.855h-2.725v10.484h2.725v-5.64c0-1.636.881-2.705 2.307-2.705 1.32 0 2.034 1.006 2.034 2.41v5.935h2.725v-6.374c0-2.6-1.593-4.32-3.983-4.32ZM58.43 4.662l-5.933 14.677h2.914l1.258-3.208h6.752l1.258 3.208h2.956L61.743 4.662H58.43Zm-.817 9.037 2.432-6.144 2.411 6.144h-4.843ZM71.514 4.662h-2.768v14.677h2.768V4.662ZM93.11 4.661h-6.5v14.677h2.768v-5.514h3.753c2.894 0 4.948-1.698 4.948-4.55 0-2.851-2.054-4.613-4.969-4.613Zm-.188 6.73h-3.544V7.178h3.544c1.425 0 2.348.818 2.348 2.097 0 1.28-.923 2.118-2.348 2.118ZM102.399 4.661h-2.726v14.677h2.726V4.661ZM113.575 12.502c0-2.39-1.636-3.858-4.655-3.858-2.474 0-4.445 1.384-4.781 3.397h2.748c.209-.692.963-1.237 2.012-1.237 1.363 0 2.013.713 2.013 1.95v.063l-2.663.23c-2.789.231-4.34 1.364-4.34 3.502 0 1.803 1.551 2.998 3.711 2.998 1.447 0 2.851-.566 3.439-1.51 0 .462.042.881.126 1.3h2.537c-.106-.67-.147-1.446-.147-2.348v-4.487Zm-2.663 2.495c0 1.238-.923 2.496-2.789 2.496-1.006 0-1.551-.483-1.551-1.195 0-.776.524-1.258 1.698-1.363l2.642-.231v.293ZM119.298 5.457h-2.725v3.397h-2.18v2.201h2.18v5.158c0 1.992 1.027 3.124 3.229 3.124h2.18v-2.264h-1.383c-.923 0-1.301-.314-1.301-1.174v-4.844h2.684V8.854h-2.684V5.457ZM127.811 8.142c0-.755.336-1.216 1.259-1.216h1.95V4.66h-2.306c-2.37 0-3.628 1.216-3.628 3.23v.964h-2.18v2.201h2.18v8.282h2.725v-8.282h2.685V8.855h-2.685v-.713ZM136.428 8.645c-3.123 0-5.535 2.474-5.535 5.451 0 2.977 2.412 5.451 5.535 5.451 3.124 0 5.536-2.474 5.536-5.451 0-2.977-2.412-5.451-5.536-5.451Zm0 8.47c-1.446 0-2.831-1.174-2.831-3.019 0-1.845 1.385-3.02 2.831-3.02 1.447 0 2.831 1.175 2.831 3.02s-1.384 3.02-2.831 3.02ZM146.115 10.448V8.855h-2.704V19.34h2.725v-4.97c0-1.991 1.006-2.998 2.789-2.998h.839V8.73h-.545c-1.321 0-2.559.65-3.104 1.72ZM163.854 8.645c-1.636 0-2.873.629-3.627 1.76-.651-1.11-1.845-1.76-3.23-1.76-1.3 0-2.474.545-3.061 1.446V8.854h-2.726v10.484h2.726v-5.64c0-1.636.86-2.705 2.265-2.705 1.299 0 2.013 1.006 2.013 2.411v5.934h2.725v-5.64c0-1.636.88-2.705 2.265-2.705 1.3 0 2.013 1.006 2.013 2.411v5.934h2.725v-6.374c0-2.6-1.656-4.32-4.088-4.32Z" fill="var(--text-primary)"></path></svg></div></div><main class="unjkE" data-sidebar="expanded" data-mobile-menu="hidden"><aside class="EpwGB"><div class="GVIPA"><div class="JGDzZ"><div class="fKGG4"><div class="NmUvH"><span class="block _00hoS"><div class="aTuAl"><div class="_0MyKb qyrrQ"><div class="search mt-[-6px]"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key">⌘</kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div></div><div class="DH-HY qyrrQ QeXPj"><div class="side-nav-section"><div class="side-nav-header subheading">Get started</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/overview"><span class="side-nav-item-name">Overview</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/quickstart"><span class="side-nav-item-name">Quickstart</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/models"><span class="side-nav-item-name">Models</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/pricing"><span class="side-nav-item-name">Pricing</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/libraries"><span class="side-nav-item-name">Libraries</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Core Concepts</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/text"><span class="side-nav-item-name">Text and prompting</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/images-vision"><span class="side-nav-item-name">Images and vision</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/audio"><span class="side-nav-item-name">Audio and speech</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/structured-outputs"><span class="side-nav-item-name">Structured Outputs</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/function-calling"><span class="side-nav-item-name">Function calling</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/conversation-state"><span class="side-nav-item-name">Conversation state</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/streaming-responses"><span class="side-nav-item-name">Streaming</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/pdf-files"><span class="side-nav-item-name">File inputs</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/reasoning"><span class="side-nav-item-name">Reasoning</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Built-in tools</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/tools"><span class="side-nav-item-name">Using built-in tools</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/tools-web-search"><span class="side-nav-item-name">Web search</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/tools-file-search"><span class="side-nav-item-name">File search</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/tools-computer-use"><span class="side-nav-item-name">Computer use</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Agents</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/agents"><span class="side-nav-item-name">Building agents</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/voice-agents"><span class="side-nav-item-name">Voice agents</span></a><a href="https://openai.github.io/openai-agents-python/" class="scroll-link side-nav-item" target="_blank" rel="noreferrer"><span class="side-nav-item-name">Agents SDK</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" class="side-nav-icon"><path fill-rule="evenodd" d="M15 5a1 1 0 1 1 0-2h5a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0V6.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L17.586 5H15ZM4 7a3 3 0 0 1 3-3h3a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 1 1 2 0v3a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z" clip-rule="evenodd"></path></svg></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Realtime API</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/realtime"><span class="side-nav-item-name">Using the Realtime API</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/realtime-conversations"><span class="side-nav-item-name">Realtime conversations</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/realtime-transcription"><span class="side-nav-item-name">Realtime transcription</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/realtime-vad"><span class="side-nav-item-name">Voice activity detection</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Model optimization</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/model-optimization"><span class="side-nav-item-name">Overview</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/evals"><span class="side-nav-item-name">Evals</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/fine-tuning"><span class="side-nav-item-name">Fine-tuning</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/supervised-fine-tuning"><span class="side-nav-item-name">Supervised fine-tuning</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/vision-fine-tuning"><span class="side-nav-item-name">Vision fine-tuning</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/direct-preference-optimization"><span class="side-nav-item-name">Direct preference optimization</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/reinforcement-fine-tuning"><span class="side-nav-item-name">Reinforcement fine-tuning</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/graders"><span class="side-nav-item-name">Graders</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/distillation"><span class="side-nav-item-name">Distillation</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Specialized models</div><a class="scroll-link side-nav-item active active-exact" href="https://platform.openai.com/docs/guides/image-generation"><span class="side-nav-item-name">Image generation</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/text-to-speech"><span class="side-nav-item-name">Text to speech</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/speech-to-text"><span class="side-nav-item-name">Speech to text</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/embeddings"><span class="side-nav-item-name">Embeddings</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/moderation"><span class="side-nav-item-name">Moderation</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">OpenAI Platform</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/retrieval"><span class="side-nav-item-name">Retrieval</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/batch"><span class="side-nav-item-name">Batch</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/prompt-generation"><span class="side-nav-item-name">Prompt generation</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Codex</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/codex"><span class="side-nav-item-name">Codex</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/tools-local-shell"><span class="side-nav-item-name">Local shell tool</span></a><a href="https://github.com/openai/codex" class="scroll-link side-nav-item" target="_blank" rel="noreferrer"><span class="side-nav-item-name">Codex CLI</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" class="side-nav-icon"><path fill-rule="evenodd" d="M15 5a1 1 0 1 1 0-2h5a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0V6.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L17.586 5H15ZM4 7a3 3 0 0 1 3-3h3a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 1 1 2 0v3a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z" clip-rule="evenodd"></path></svg></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Best practices</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/production-best-practices"><span class="side-nav-item-name">Production best practices</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/safety-best-practices"><span class="side-nav-item-name">Safety best practices</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/prompt-caching"><span class="side-nav-item-name">Prompt Caching</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/predicted-outputs"><span class="side-nav-item-name">Predicted Outputs</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/reasoning-best-practices"><span class="side-nav-item-name">Reasoning best practices</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/evals-design"><span class="side-nav-item-name">Evals design</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/fine-tuning-best-practices"><span class="side-nav-item-name">Fine-tuning best practices</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/rft-use-cases"><span class="side-nav-item-name">Reinforcement fine-tuning use cases</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/model-selection"><span class="side-nav-item-name">Model selection</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/latency-optimization"><span class="side-nav-item-name">Latency optimization</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/optimizing-llm-accuracy"><span class="side-nav-item-name">Accuracy optimization</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/advanced-usage"><span class="side-nav-item-name">Advanced usage</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/responses-vs-chat-completions"><span class="side-nav-item-name">Responses vs. Chat Completions</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/flex-processing"><span class="side-nav-item-name">Flex processing</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Assistants API</div><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/assistants/overview"><span class="side-nav-item-name">Overview</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/assistants/quickstart"><span class="side-nav-item-name">Quickstart</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/assistants/deep-dive"><span class="side-nav-item-name">Deep dive</span></a><a class="scroll-link side-nav-item side-nav-item-has-subitems" data-side-nav-subitems="hidden" href="https://platform.openai.com/docs/assistants/tools"><span class="side-nav-item-name">Tools</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" class="side-nav-mobile-chevron"><path fill-rule="evenodd" d="M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z" clip-rule="evenodd"></path></svg></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/assistants/whats-new"><span class="side-nav-item-name">What's new?</span></a></div><div class="side-nav-section"><div class="side-nav-header subheading">Resources</div><a href="https://openai.com/policies" class="scroll-link side-nav-item" target="_blank" rel="noreferrer"><span class="side-nav-item-name">Terms and policies</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" class="side-nav-icon"><path fill-rule="evenodd" d="M15 5a1 1 0 1 1 0-2h5a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0V6.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L17.586 5H15ZM4 7a3 3 0 0 1 3-3h3a1 1 0 1 1 0 2H7a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 1 1 2 0v3a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7Z" clip-rule="evenodd"></path></svg></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/changelog"><span class="side-nav-item-name">Changelog</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/your-data"><span class="side-nav-item-name">Your data</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/guides/rate-limits"><span class="side-nav-item-name">Rate limits</span></a><a class="scroll-link side-nav-item" href="https://platform.openai.com/docs/deprecations"><span class="side-nav-item-name">Deprecations</span></a><a class="scroll-link side-nav-item side-nav-item-has-subitems" data-side-nav-subitems="hidden" href="https://platform.openai.com/docs/actions"><span class="side-nav-item-name">ChatGPT Actions</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" class="side-nav-mobile-chevron"><path fill-rule="evenodd" d="M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z" clip-rule="evenodd"></path></svg></a></div></div></div></span></div></div></div></div><div class="EDOEc qyrrQ"><div class="q3jBs"><a href="https://cookbook.openai.com/" target="_blank" rel="noopener noreferrer" class="-ySo1 FDGXZ" data-state="closed"><span class="_1h-SG"><span class="-k7Gw"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M14.447 7.106a1 1 0 0 1 .447 1.341l-4 8a1 1 0 1 1-1.788-.894l4-8a1 1 0 0 1 1.341-.447ZM6.6 7.2a1 1 0 0 1 .2 1.4L4.25 12l2.55 3.4a1 1 0 0 1-1.6 1.2l-3-4a1 1 0 0 1 0-1.2l3-4a1 1 0 0 1 1.4-.2Zm10.8 0a1 1 0 0 1 1.4.2l3 4a1 1 0 0 1 0 1.2l-3 4a1 1 0 0 1-1.6-1.2l2.55-3.4-2.55-3.4a1 1 0 0 1 .2-1.4Z" clip-rule="evenodd"></path></svg></span><span class="_0LIzz">Cookbook</span></span></a><a href="https://community.openai.com/categories" target="_blank" rel="noopener noreferrer" class="-ySo1 FDGXZ" data-state="closed"><span class="_1h-SG"><span class="-k7Gw"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M10.5 8.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM12 5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM3 9.5a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm16 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-3 1a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM8 18c0-.974.438-1.684 1.142-2.185C9.876 15.293 10.911 15 12 15c1.09 0 2.124.293 2.858.815.704.5 1.142 1.21 1.142 2.185a1 1 0 1 0 2 0c0-1.692-.812-2.982-1.983-3.815C14.876 13.373 13.411 13 12 13c-1.41 0-2.876.373-4.017 1.185C6.812 15.018 6 16.308 6 18a1 1 0 1 0 2 0Zm-3.016-3.675a1 1 0 0 1-.809 1.16C2.79 15.732 2 16.486 2 17.5a1 1 0 1 1-2 0c0-2.41 1.978-3.655 3.825-3.985a1 1 0 0 1 1.16.81Zm14.84 1.16a1 1 0 1 1 .351-1.97C22.022 13.845 24 15.09 24 17.5a1 1 0 1 1-2 0c0-1.014-.79-1.768-2.175-2.015Z" clip-rule="evenodd"></path></svg></span><span class="_0LIzz">Forum</span></span></a><button class="-ySo1 FDGXZ" data-state="closed"><span class="_1h-SG"><span class="-k7Gw"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M12 9a1 1 0 0 0-.879.522 1 1 0 0 1-1.754-.96A3 3 0 0 1 12 7c1.515 0 2.567 1.006 2.866 2.189.302 1.189-.156 2.574-1.524 3.258A.618.618 0 0 0 13 13a1 1 0 1 1-2 0c0-.992.56-1.898 1.447-2.342.455-.227.572-.618.48-.978C12.836 9.314 12.529 9 12 9Z" clip-rule="evenodd"></path><path d="M13.1 16a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"></path></svg></span><span class="_0LIzz">Help</span></span></button></div></div></aside><div class="_7j8ow"><div class="qLnXc"><div class="JGDzZ"><div class="fKGG4"><div class="NmUvH"><span class="block _00hoS"><div class="ImBcX"><div class="docs-scroll-container" data-important-algolia-crawl="true"><div class="page-body full-width flush docs-page"><div class="docs-markdown-page docs-markdown-content markdown-prompt-blockquote"><div class="flex w-full items-start"><div class="flex-1 overflow-hidden"><div><div class="title-container flex items-baseline justify-between"><div><h1 id="page-top" class="docs-markdown-page-title m-0">Image generation</h1><div class="docs-markdown-page-subtitle">Learn how to generate or edit images.</div></div><div class="flex flex-col gap-2 items-end justify-start ml-4 px-1"><div><button type="button" class="Wmjjd copy-button" data-color="secondary" data-variant="bare" data-size="2xs" data-gutter-size="2xs" data-icon-size="sm" style="--scale: 0.97;"><span class="_6jr41"><span class="eRdFc" data-align="start"><span class="block beN8R"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2V5Zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2ZM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5Z" clip-rule="evenodd"></path></svg></span></span>Copy page</span></button></div></div></div><div class="exclude-from-copy" data-gallery-state="page"><div class="E8DsQ" id="gallery-page-container"><button type="button" class="Wmjjd niPO2" data-color="primary-alt" data-variant="filled" data-pill="" data-size="xl" data-gutter-size="xl" data-icon-size="sm" style="--scale: 0.97;"><span class="_6jr41">Explore</span></button><div class="TaC3y"><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div><div class="wj4af"></div></div><div class="RD-C8" id="gallery-fullscreen-container" inert=""><button type="button" class="Wmjjd O6pE7 DVVgJ" data-color="secondary" data-variant="filled" data-pill="" data-uniform="" data-size="xl" data-gutter-size="xl" data-icon-size="lg"><span class="_6jr41"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.636 5.636a1 1 0 0 1 1.414 0l4.95 4.95 4.95-4.95a1 1 0 0 1 1.414 1.414L13.414 12l4.95 4.95a1 1 0 0 1-1.414 1.414L12 13.414l-4.95 4.95a1 1 0 0 1-1.414-1.414l4.95-4.95-4.95-4.95a1 1 0 0 1 0-1.414Z" clip-rule="evenodd"></path></svg></span></button><button type="button" class="Wmjjd dl6cM DVVgJ" data-color="secondary" data-variant="filled" data-pill="" data-uniform="" data-size="xl" data-gutter-size="xl" data-icon-size="lg"><span class="_6jr41"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.7587 3H15.2413C16.0463 2.99999 16.7106 2.99998 17.2518 3.04419C17.8139 3.09012 18.3306 3.18868 18.816 3.43597C19.5686 3.81947 20.1805 4.43139 20.564 5.18404C20.8113 5.66937 20.9099 6.18608 20.9558 6.74817C21 7.28936 21 7.95372 21 8.75868V15.2413C21 16.0463 21 16.7106 20.9558 17.2518C20.9099 17.8139 20.8113 18.3306 20.564 18.816C20.1805 19.5686 19.5686 20.1805 18.816 20.564C18.3306 20.8113 17.8139 20.9099 17.2518 20.9558C16.7106 21 16.0463 21 15.2413 21H8.75868C7.95372 21 7.28936 21 6.74817 20.9558C6.18608 20.9099 5.66937 20.8113 5.18404 20.564C4.43139 20.1805 3.81947 19.5686 3.43597 18.816C3.18868 18.3306 3.09012 17.8139 3.04419 17.2518C2.99998 16.7106 2.99999 16.0463 3 15.2413V8.7587C2.99999 7.95373 2.99998 7.28937 3.04419 6.74817C3.09012 6.18608 3.18868 5.66937 3.43597 5.18404C3.81947 4.43139 4.43139 3.81947 5.18404 3.43597C5.66937 3.18868 6.18608 3.09012 6.74817 3.04419C7.28937 2.99998 7.95373 2.99999 8.7587 3ZM6.91104 5.03755C6.47262 5.07337 6.24842 5.1383 6.09202 5.21799C5.7157 5.40973 5.40973 5.7157 5.21799 6.09202C5.1383 6.24842 5.07337 6.47262 5.03755 6.91104C5.00078 7.36113 5 7.94342 5 8.8V15.2C5 16.0566 5.00078 16.6389 5.03755 17.089C5.07337 17.5274 5.1383 17.7516 5.21799 17.908C5.40973 18.2843 5.7157 18.5903 6.09202 18.782C6.24842 18.8617 6.47262 18.9266 6.91104 18.9624C7.36113 18.9992 7.94342 19 8.8 19H15.2C16.0566 19 16.6389 18.9992 17.089 18.9624C17.5274 18.9266 17.7516 18.8617 17.908 18.782C18.2843 18.5903 18.5903 18.2843 18.782 17.908C18.8617 17.7516 18.9266 17.5274 18.9624 17.089C18.9992 16.6389 19 16.0566 19 15.2V8.8C19 7.94342 18.9992 7.36113 18.9624 6.91104C18.9266 6.47262 18.8617 6.24842 18.782 6.09202C18.5903 5.7157 18.2843 5.40973 17.908 5.21799C17.7516 5.1383 17.5274 5.07337 17.089 5.03755C16.6389 5.00078 16.0566 5 15.2 5H8.8C7.94342 5 7.36113 5.00078 6.91104 5.03755Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M20 13H4V11H20V13Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11 20V4H13V20H11Z" fill="currentColor"></path></svg></span></button><div class="CZMm-" id="gallery-grid-container"><div class="h17IP"><a id="gallery-grid-logo" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=logo"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/color-wheel.png" data-loaded=""></span></a><a id="gallery-grid-business-card" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=business-card"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/business-card-result.png" data-loaded=""></span></a><a id="gallery-grid-furniture" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=furniture"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/furniture-poster.png" data-loaded=""></span></a><a id="gallery-grid-handbag" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=handbag"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/handbag-output.png" data-loaded=""></span></a><a id="gallery-grid-speaker" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=speaker"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/speaker-output.png" data-loaded=""></span></a><a id="gallery-grid-sneakers" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=sneakers"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/sneakers-poster.png" data-loaded=""></span></a><a id="gallery-grid-3d-city" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=3d-city"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/3d-city.png" data-loaded=""></span></a><a id="gallery-grid-glass-speaker" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=glass-speaker"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/glass-speaker.png" data-loaded=""></span></a><a id="gallery-grid-chocolate" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=chocolate"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/chocolate-poster.png" data-loaded=""></span></a><a id="gallery-grid-kyoto-poster" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=kyoto-poster"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/kyoto-poster.png" data-loaded=""></span></a><a id="gallery-grid-birthday-card" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=birthday-card"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/gift-basket.png" data-loaded=""></span></a><a id="gallery-grid-magazine-cover" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=magazine-cover"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/magazine-cover.png" data-loaded=""></span></a><a id="gallery-grid-food-truck" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=food-truck"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/food-truck-output.png" data-loaded=""></span></a><a id="gallery-grid-restaurant-menu" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=restaurant-menu"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/italian-menu.png" data-loaded=""></span></a><a id="gallery-grid-parking" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=parking"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/parking-poster.png" data-loaded=""></span></a><a id="gallery-grid-guacamole-recipe" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=guacamole-recipe"><span class="bvtJd" role="presentation"><img alt="" class="PijKC" draggable="false" src="./Image generation - OpenAI API_files/guacamole-recipe.png" data-loaded=""></span></a><a id="gallery-grid-sprites" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=sprites"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-interior-design" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=interior-design"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-tryon" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=tryon"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-floorplan" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=floorplan"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-whales-poster" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=whales-poster"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-ad-gpu-crunch" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=ad-gpu-crunch"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-album-cover" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=album-cover"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-alien" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=alien"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-bottle" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=bottle"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-game-design" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=game-design"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-t-shirts" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=t-shirts"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-ad-pickle" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=ad-pickle"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-concert-ticket" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=concert-ticket"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-animation" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=animation"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-patterns" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=patterns"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-vase" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=vase"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-buildings-sprite" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=buildings-sprite"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-vinyl" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=vinyl"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-ketchup-ad" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=ketchup-ad"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-backstitch-tutorial" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=backstitch-tutorial"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-living-room" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=living-room"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-icons" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=icons"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-ad-olive-oil" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=ad-olive-oil"><span class="bvtJd" role="presentation"></span></a><a id="gallery-grid-bath-set" class="HA8Re" data-grid-item="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;gallery=open&amp;galleryItem=bath-set"><span class="bvtJd" role="presentation"></span></a></div></div></div><div class="_9HyQt"></div></div></div>
+<div class="anchor-heading-wrapper"><h2 id="overview" class="anchor-heading" data-name="overview">Overview<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h2></div>
+<p>The OpenAI API lets you generate and edit images from text prompts, using the GPT Image or DALL·E models.</p>
+<p>Currently, image generation is only available through the <a href="https://platform.openai.com/docs/api-reference/images">Image API</a>. We’re actively working on expanding support to the <a href="https://platform.openai.com/docs/api-reference/responses">Responses API</a>.</p>
+<p>The <a href="https://platform.openai.com/docs/api-reference/images">Image API</a> provides three endpoints, each with distinct capabilities:</p>
+<ul>
+<li><strong>Generations</strong>: <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#generate-images">Generate images</a> from scratch based on a text prompt</li>
+<li><strong>Edits</strong>: <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#edit-images">Modify existing images</a> using a new prompt, either partially or entirely</li>
+<li><strong>Variations</strong>: <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#image-variations">Generate variations</a> of an existing image (available with DALL·E 2 only)</li>
+</ul>
+<p>You can also <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#customize-image-output">customize the output</a> by specifying the quality, size, format, compression, and whether you would like a transparent background.</p>
+
+
+<div class="anchor-heading-wrapper"><h3 id="model-comparison" class="anchor-heading" data-name="model-comparison">Model comparison<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h3></div>
+<p>Our latest and most advanced model for image generation is <code>gpt-image-1</code>, a natively multimodal language model.</p>
+<p>We recommend this model for its high-quality image generation and ability to use world knowledge in image creation. However, you can also use specialized image generation models—DALL·E 2 and DALL·E 3—with the Image API.</p>
+<table><thead><tr><th>Model</th><th>Endpoints</th><th>Use case</th></tr></thead><tbody><tr><td>DALL·E 2</td><td>Image API: Generations, Edits, Variations</td><td>Lower cost, concurrent requests, inpainting (image editing with a mask)</td></tr><tr><td>DALL·E 3</td><td>Image API: Generations only</td><td>Higher image quality than DALL·E 2, support for larger resolutions</td></tr><tr><td>GPT Image</td><td>Image API: Generations, Edits – Responses API support coming soon</td><td>Superior instruction following, text rendering, detailed editing, real-world knowledge</td></tr></tbody></table>
+<p>This guide focuses on GPT Image, but you can also switch to the docs for <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=dall-e-2">DALL·E 2</a> and <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=dall-e-3">DALL·E 3</a>.</p><div class="eyfSy"><div class="kQ2ry" data-variant="neutral"><div class="KtDSh"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path d="M13 12a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4Zm-1-2.5A1.25 1.25 0 1 0 12 7a1.25 1.25 0 0 0 0 2.5Z"></path><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" clip-rule="evenodd"></path></svg></div><div class="d3NUC"><div class="hFW1r"><div class="_9ohtt"><p>To ensure this model is used responsibly, you may need to complete the <a href="https://help.openai.com/en/articles/10910291-api-organization-verification" target="_blank" rel="noopener noreferrer">API Organization Verification</a> from your <a href="https://platform.openai.com/settings/organization/general" target="_blank" rel="noopener noreferrer">developer console</a> before using <code>gpt-image-1</code>.</p></div></div></div></div></div>
+
+
+<img alt="a vet with a baby otter" src="./Image generation - OpenAI API_files/otter.png" style="height: 180px; float: right; margin: 10px 0px 10px 10px; border-radius: 8px;">
+<div class="anchor-heading-wrapper"><h2 id="generate-images" class="anchor-heading" data-name="generate-images">Generate Images<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h2></div>
+<p>You can use the <a href="https://platform.openai.com/docs/api-reference/images/create">image generation endpoint</a> to create images based on text prompts. To learn more about customizing the output (size, quality, format, transparency), refer to the <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#customize-image-output">customize image output</a> section below.</p>
+<p>You can set the <code>n</code> parameter to generate multiple images at once in a single request (by default, the API returns a single image).</p><div class="code-sample dark-mode"><div class="code-sample-header"><div class="code-sample-title body-small">Generate an image</div><div class="exclude-from-copy"><button id="select-trigger-radix-:ru:" type="button" class="ICo9Y" data-variant="bare" data-size="sm" data-gutter-size="xs" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r10:" data-state="closed"><span class="RWOJJ">javascript</span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button></div><button type="button" class="Wmjjd Ry4P0" data-color="secondary" data-variant="bare" data-size="sm" data-gutter-size="xs" data-icon-size="sm"><span class="_6jr41"><span class="eRdFc" data-align="start"><span class="block beN8R"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2V5Zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2ZM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5Z" clip-rule="evenodd"></path></svg></span></span></span></button></div><div class="code-sample-body code-sample-body-small code-sample-body-with-header"><div class="code-block"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-javascript" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span><span class="react-syntax-highlighter-line-number">17
+</span><span class="react-syntax-highlighter-line-number">18
+</span></code><span><span class="hljs-keyword">import</span><span> OpenAI </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"openai"</span><span>;
+</span></span><span><span></span><span class="hljs-keyword">import</span><span> fs </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"fs"</span><span>;
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> openai = </span><span class="hljs-keyword">new</span><span> OpenAI();
+</span></span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> prompt = </span><span class="hljs-string">`
+</span></span><span class="hljs-string">A children's book drawing of a veterinarian using a stethoscope to 
+</span><span class="hljs-string">listen to the heartbeat of a baby otter.
+</span><span><span class="hljs-string">`</span><span>;
+</span></span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> result = </span><span class="hljs-keyword">await</span><span> openai.images.generate({
+</span></span><span><span>    </span><span class="hljs-attr">model</span><span>: </span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span>    prompt,
+</span><span>});
+</span><span>
+</span><span><span></span><span class="hljs-comment">// Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_base64 = result.data[</span><span class="hljs-number">0</span><span>].b64_json;
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_bytes = Buffer.from(image_base64, </span><span class="hljs-string">"base64"</span><span>);
+</span></span><span><span>fs.writeFileSync(</span><span class="hljs-string">"otter.png"</span><span>, image_bytes);</span></span></code></pre></div><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-python" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span><span class="react-syntax-highlighter-line-number">17
+</span><span class="react-syntax-highlighter-line-number">18
+</span><span class="react-syntax-highlighter-line-number">19
+</span><span class="react-syntax-highlighter-line-number">20
+</span></code><span><span class="hljs-keyword">from</span><span> openai </span><span class="hljs-keyword">import</span><span> OpenAI
+</span></span><span><span></span><span class="hljs-keyword">import</span><span> base64
+</span></span><span>client = OpenAI()
+</span><span>
+</span><span><span>prompt = </span><span class="hljs-string">"""
+</span></span><span class="hljs-string">A children's book drawing of a veterinarian using a stethoscope to 
+</span><span class="hljs-string">listen to the heartbeat of a baby otter.
+</span><span><span class="hljs-string">"""</span><span>
+</span></span><span>
+</span><span>result = client.images.generate(
+</span><span><span>    model=</span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span>    prompt=prompt
+</span><span>)
+</span><span>
+</span><span><span>image_base64 = result.data[</span><span class="hljs-number">0</span><span>].b64_json
+</span></span><span>image_bytes = base64.b64decode(image_base64)
+</span><span>
+</span><span><span></span><span class="hljs-comment"># Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">with</span><span> </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"otter.png"</span><span>, </span><span class="hljs-string">"wb"</span><span>) </span><span class="hljs-keyword">as</span><span> f:
+</span></span><span>    f.write(image_bytes)</span></code></pre></div><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-bash" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span></code><span><span>curl -X POST </span><span class="hljs-string">"https://api.openai.com/v1/images/generations"</span><span> \
+</span></span><span><span>    -H </span><span class="hljs-string">"Authorization: Bearer </span><span class="hljs-string hljs-variable">$OPENAI_API_KEY</span><span class="hljs-string">"</span><span> \
+</span></span><span><span>    -H </span><span class="hljs-string">"Content-type: application/json"</span><span> \
+</span></span><span><span>    -d </span><span class="hljs-string">'{
+</span></span><span class="hljs-string">        "model": "gpt-image-1",
+</span><span class="hljs-string">        "prompt": "A childrens book drawing of a veterinarian using a stethoscope to listen to the heartbeat of a baby otter."
+</span><span><span class="hljs-string">    }'</span><span> | jq -r </span><span class="hljs-string">'.data[0].b64_json'</span><span> | base64 --decode &gt; otter.png</span></span></code></pre></div></div></div>
+
+
+
+<div class="anchor-heading-wrapper"><h2 id="edit-images" class="anchor-heading" data-name="edit-images">Edit Images<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h2></div>
+<p>The <a href="https://platform.openai.com/docs/api-reference/images/createEdit">image edits</a> endpoint lets you:</p><ul>
+<li>Edit existing images</li>
+<li>Generate new images using other images as a reference</li>
+<li>Edit parts of an image by uploading an image and mask indicating which areas should be replaced (a process known as <strong>inpainting</strong>)</li>
+</ul><div class="anchor-heading-wrapper"><h3 id="create-a-new-image-using-image-references" class="anchor-heading" data-name="create-a-new-image-using-image-references">Create a new image using image references<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h3></div><p>You can use one or more images as a reference to generate a new image.</p><p>In this example, we'll use 4 input images to generate a new image of a gift basket containing the items in the reference images.</p><div class="w-full flex gap-2"><div class="grid grid-cols-2 gap-2 w-1/2"><a href="./Image generation - OpenAI API_files/body-lotion.png" target="_blank" rel="noopener noreferrer"><img alt="Body Lotion" class="rounded-lg" src="./Image generation - OpenAI API_files/body-lotion.png"></a><a href="./Image generation - OpenAI API_files/soap.png" target="_blank" rel="noopener noreferrer"><img alt="Soap" class="rounded-lg" src="./Image generation - OpenAI API_files/soap.png"></a><a href="./Image generation - OpenAI API_files/incense-kit.png" target="_blank" rel="noopener noreferrer"><img alt="Incense Kit" class="rounded-lg" src="./Image generation - OpenAI API_files/incense-kit.png"></a><a href="./Image generation - OpenAI API_files/bath-bomb.png" target="_blank" rel="noopener noreferrer"><img alt="Bath Bomb" class="rounded-lg" src="./Image generation - OpenAI API_files/bath-bomb.png"></a></div><div class="w-1/2"><img alt="Bath Gift Set" class="rounded-lg" src="./Image generation - OpenAI API_files/bath-set-result.png"></div></div><div class="code-sample dark-mode"><div class="code-sample-header"><div class="code-sample-title body-small">Edit an image</div><div class="exclude-from-copy"><button id="select-trigger-radix-:r11:" type="button" class="ICo9Y" data-variant="bare" data-size="sm" data-gutter-size="xs" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r13:" data-state="closed"><span class="RWOJJ">javascript</span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button></div><button type="button" class="Wmjjd Ry4P0" data-color="secondary" data-variant="bare" data-size="sm" data-gutter-size="xs" data-icon-size="sm"><span class="_6jr41"><span class="eRdFc" data-align="start"><span class="block beN8R"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2V5Zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2ZM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5Z" clip-rule="evenodd"></path></svg></span></span></span></button></div><div class="code-sample-body code-sample-body-small code-sample-body-with-header"><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-python" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span><span class="react-syntax-highlighter-line-number">17
+</span><span class="react-syntax-highlighter-line-number">18
+</span><span class="react-syntax-highlighter-line-number">19
+</span><span class="react-syntax-highlighter-line-number">20
+</span><span class="react-syntax-highlighter-line-number">21
+</span><span class="react-syntax-highlighter-line-number">22
+</span><span class="react-syntax-highlighter-line-number">23
+</span><span class="react-syntax-highlighter-line-number">24
+</span><span class="react-syntax-highlighter-line-number">25
+</span><span class="react-syntax-highlighter-line-number">26
+</span><span class="react-syntax-highlighter-line-number">27
+</span></code><span><span class="hljs-keyword">import</span><span> base64
+</span></span><span><span></span><span class="hljs-keyword">from</span><span> openai </span><span class="hljs-keyword">import</span><span> OpenAI
+</span></span><span>client = OpenAI()
+</span><span>
+</span><span><span>prompt = </span><span class="hljs-string">"""
+</span></span><span class="hljs-string">Generate a photorealistic image of a gift basket on a white background 
+</span><span class="hljs-string">labeled 'Relax &amp; Unwind' with a ribbon and handwriting-like font, 
+</span><span class="hljs-string">containing all the items in the reference pictures.
+</span><span><span class="hljs-string">"""</span><span>
+</span></span><span>
+</span><span>result = client.images.edit(
+</span><span><span>    model=</span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span>    image=[
+</span><span><span>        </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"body-lotion.png"</span><span>, </span><span class="hljs-string">"rb"</span><span>),
+</span></span><span><span>        </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"bath-bomb.png"</span><span>, </span><span class="hljs-string">"rb"</span><span>),
+</span></span><span><span>        </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"incense-kit.png"</span><span>, </span><span class="hljs-string">"rb"</span><span>),
+</span></span><span><span>        </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"soap.png"</span><span>, </span><span class="hljs-string">"rb"</span><span>),
+</span></span><span>    ],
+</span><span>    prompt=prompt
+</span><span>)
+</span><span>
+</span><span><span>image_base64 = result.data[</span><span class="hljs-number">0</span><span>].b64_json
+</span></span><span>image_bytes = base64.b64decode(image_base64)
+</span><span>
+</span><span><span></span><span class="hljs-comment"># Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">with</span><span> </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"gift-basket.png"</span><span>, </span><span class="hljs-string">"wb"</span><span>) </span><span class="hljs-keyword">as</span><span> f:
+</span></span><span>    f.write(image_bytes)</span></code></pre></div><div class="code-block"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-javascript" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span><span class="react-syntax-highlighter-line-number">17
+</span><span class="react-syntax-highlighter-line-number">18
+</span><span class="react-syntax-highlighter-line-number">19
+</span><span class="react-syntax-highlighter-line-number">20
+</span><span class="react-syntax-highlighter-line-number">21
+</span><span class="react-syntax-highlighter-line-number">22
+</span><span class="react-syntax-highlighter-line-number">23
+</span><span class="react-syntax-highlighter-line-number">24
+</span><span class="react-syntax-highlighter-line-number">25
+</span><span class="react-syntax-highlighter-line-number">26
+</span><span class="react-syntax-highlighter-line-number">27
+</span><span class="react-syntax-highlighter-line-number">28
+</span><span class="react-syntax-highlighter-line-number">29
+</span><span class="react-syntax-highlighter-line-number">30
+</span></code><span><span class="hljs-keyword">import</span><span> fs </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"fs"</span><span>;
+</span></span><span><span></span><span class="hljs-keyword">import</span><span> OpenAI, { toFile } </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"openai"</span><span>;
+</span></span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> client = </span><span class="hljs-keyword">new</span><span> OpenAI();
+</span></span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> imageFiles = [
+</span></span><span><span>    </span><span class="hljs-string">"bath-bomb.png"</span><span>,
+</span></span><span><span>    </span><span class="hljs-string">"body-lotion.png"</span><span>,
+</span></span><span><span>    </span><span class="hljs-string">"incense-kit.png"</span><span>,
+</span></span><span><span>    </span><span class="hljs-string">"soap.png"</span><span>,
+</span></span><span>];
+</span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> images = </span><span class="hljs-keyword">await</span><span> </span><span class="hljs-built_in">Promise</span><span>.all(
+</span></span><span><span>    imageFiles.map(</span><span class="hljs-keyword">async</span><span> (file) =&gt;
+</span></span><span><span>        </span><span class="hljs-keyword">await</span><span> toFile(fs.createReadStream(file), </span><span class="hljs-literal">null</span><span>, {
+</span></span><span><span>            </span><span class="hljs-attr">type</span><span>: </span><span class="hljs-string">"image/png"</span><span>,
+</span></span><span>        })
+</span><span>    ),
+</span><span>);
+</span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> rsp = </span><span class="hljs-keyword">await</span><span> client.images.edit({
+</span></span><span><span>    </span><span class="hljs-attr">model</span><span>: </span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span><span>    </span><span class="hljs-attr">image</span><span>: images,
+</span></span><span><span>    </span><span class="hljs-attr">prompt</span><span>: </span><span class="hljs-string">"Create a lovely gift basket with these four items in it"</span><span>,
+</span></span><span>});
+</span><span>
+</span><span><span></span><span class="hljs-comment">// Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_base64 = rsp.data[</span><span class="hljs-number">0</span><span>].b64_json;
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_bytes = Buffer.from(image_base64, </span><span class="hljs-string">"base64"</span><span>);
+</span></span><span><span>fs.writeFileSync(</span><span class="hljs-string">"basket.png"</span><span>, image_bytes);</span></span></code></pre></div><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-bash" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span></code><span><span>curl -s -D &gt;(grep -i x-request-id &gt;&amp;2) \
+</span></span><span><span>  -o &gt;(jq -r </span><span class="hljs-string">'.data[0].b64_json'</span><span> | base64 --decode &gt; gift-basket.png) \
+</span></span><span><span>  -X POST </span><span class="hljs-string">"https://api.openai.com/v1/images/edits"</span><span> \
+</span></span><span><span>  -H </span><span class="hljs-string">"Authorization: Bearer </span><span class="hljs-string hljs-variable">$OPENAI_API_KEY</span><span class="hljs-string">"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">"model=gpt-image-1"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">"image[]=@body-lotion.png"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">"image[]=@bath-bomb.png"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">"image[]=@incense-kit.png"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">"image[]=@soap.png"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">'prompt=Generate a photorealistic image of a gift basket on a white background labeled "Relax &amp; Unwind" with a ribbon and handwriting-like font, containing all the items in the reference pictures'</span></span></code></pre></div></div></div><div class="anchor-heading-wrapper"><h3 id="edit-an-image-using-a-mask-inpainting" class="anchor-heading" data-name="edit-an-image-using-a-mask-inpainting">Edit an image using a mask (inpainting)<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h3></div><p>You can provide a mask to indicate where the image should be edited. The transparent areas of the mask will be replaced, while the filled areas will be left unchanged.</p><p>You can use the prompt to describe what you want the final edited image to be or what you want to edit specifically.
+If you provide multiple input images, the mask will be applied to the first image.</p><div class="code-sample dark-mode"><div class="code-sample-header"><div class="code-sample-title body-small">Edit an image</div><div class="exclude-from-copy"><button id="select-trigger-radix-:r14:" type="button" class="ICo9Y" data-variant="bare" data-size="sm" data-gutter-size="xs" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r16:" data-state="closed"><span class="RWOJJ">javascript</span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button></div><button type="button" class="Wmjjd Ry4P0" data-color="secondary" data-variant="bare" data-size="sm" data-gutter-size="xs" data-icon-size="sm"><span class="_6jr41"><span class="eRdFc" data-align="start"><span class="block beN8R"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2V5Zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2ZM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5Z" clip-rule="evenodd"></path></svg></span></span></span></button></div><div class="code-sample-body code-sample-body-small code-sample-body-with-header"><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-python" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span></code><span><span class="hljs-keyword">from</span><span> openai </span><span class="hljs-keyword">import</span><span> OpenAI
+</span></span><span>client = OpenAI()
+</span><span>
+</span><span>result = client.images.edit(
+</span><span><span>    model=</span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span><span>    image=</span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"sunlit_lounge.png"</span><span>, </span><span class="hljs-string">"rb"</span><span>),
+</span></span><span><span>    mask=</span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"mask.png"</span><span>, </span><span class="hljs-string">"rb"</span><span>),
+</span></span><span><span>    prompt=</span><span class="hljs-string">"A sunlit indoor lounge area with a pool containing a flamingo"</span><span>
+</span></span><span>)
+</span><span>
+</span><span><span>image_base64 = result.data[</span><span class="hljs-number">0</span><span>].b64_json
+</span></span><span>image_bytes = base64.b64decode(image_base64)
+</span><span>
+</span><span><span></span><span class="hljs-comment"># Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">with</span><span> </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"composition.png"</span><span>, </span><span class="hljs-string">"wb"</span><span>) </span><span class="hljs-keyword">as</span><span> f:
+</span></span><span>    f.write(image_bytes)</span></code></pre></div><div class="code-block"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-javascript" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span><span class="react-syntax-highlighter-line-number">17
+</span><span class="react-syntax-highlighter-line-number">18
+</span><span class="react-syntax-highlighter-line-number">19
+</span><span class="react-syntax-highlighter-line-number">20
+</span></code><span><span class="hljs-keyword">import</span><span> fs </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"fs"</span><span>;
+</span></span><span><span></span><span class="hljs-keyword">import</span><span> OpenAI, { toFile } </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"openai"</span><span>;
+</span></span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> client = </span><span class="hljs-keyword">new</span><span> OpenAI();
+</span></span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> rsp = </span><span class="hljs-keyword">await</span><span> client.images.edit({
+</span></span><span><span>    </span><span class="hljs-attr">model</span><span>: </span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span><span>    </span><span class="hljs-attr">image</span><span>: </span><span class="hljs-keyword">await</span><span> toFile(fs.createReadStream(</span><span class="hljs-string">"sunlit_lounge.png"</span><span>), </span><span class="hljs-literal">null</span><span>, {
+</span></span><span><span>        </span><span class="hljs-attr">type</span><span>: </span><span class="hljs-string">"image/png"</span><span>,
+</span></span><span>    }),
+</span><span><span>    </span><span class="hljs-attr">mask</span><span>: </span><span class="hljs-keyword">await</span><span> toFile(fs.createReadStream(</span><span class="hljs-string">"mask.png"</span><span>), </span><span class="hljs-literal">null</span><span>, {
+</span></span><span><span>        </span><span class="hljs-attr">type</span><span>: </span><span class="hljs-string">"image/png"</span><span>,
+</span></span><span>    }),
+</span><span><span>    </span><span class="hljs-attr">prompt</span><span>: </span><span class="hljs-string">"A sunlit indoor lounge area with a pool containing a flamingo"</span><span>,
+</span></span><span>});
+</span><span>
+</span><span><span></span><span class="hljs-comment">// Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_base64 = rsp.data[</span><span class="hljs-number">0</span><span>].b64_json;
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_bytes = Buffer.from(image_base64, </span><span class="hljs-string">"base64"</span><span>);
+</span></span><span><span>fs.writeFileSync(</span><span class="hljs-string">"lounge.png"</span><span>, image_bytes);</span></span></code></pre></div><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-bash" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span></code><span><span>curl -s -D &gt;(grep -i x-request-id &gt;&amp;2) \
+</span></span><span><span>  -o &gt;(jq -r </span><span class="hljs-string">'.data[0].b64_json'</span><span> | base64 --decode &gt; lounge.png) \
+</span></span><span><span>  -X POST </span><span class="hljs-string">"https://api.openai.com/v1/images/edits"</span><span> \
+</span></span><span><span>  -H </span><span class="hljs-string">"Authorization: Bearer </span><span class="hljs-string hljs-variable">$OPENAI_API_KEY</span><span class="hljs-string">"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">"model=gpt-image-1"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">"mask=@mask.png"</span><span> \   
+</span></span><span><span>  -F </span><span class="hljs-string">"image[]=@sunlit_lounge.png"</span><span> \
+</span></span><span><span>  -F </span><span class="hljs-string">'prompt=A sunlit indoor lounge area with a pool containing a flamingo'</span></span></code></pre></div></div></div><div class="images-examples"><table><thead><tr><th>Image</th><th>Mask</th><th>Output</th></tr></thead><tbody><tr><td><img class="images-example-image" alt="A pink room with a pool" src="./Image generation - OpenAI API_files/sunlit_lounge.png"></td><td><img class="images-example-image" alt="A mask in part of the pool" src="./Image generation - OpenAI API_files/mask.png"></td><td><img class="images-example-image" alt="The original pool with an inflatable flamigo replacing the mask" src="./Image generation - OpenAI API_files/sunlit_lounge_result.png"></td></tr></tbody></table></div><p class="images-edit-prompt body-small"><p>Prompt: a sunlit indoor lounge area with a pool containing a flamingo</p></p><div class="anchor-heading-wrapper"><h4 id="mask-requirements" class="anchor-heading" data-name="mask-requirements">Mask requirements<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h4></div><p>The image to edit and mask must be of the same format and size (less than 25MB in size).</p><p>The mask image must also contain an alpha channel. If you're using an image editing tool to create the mask, make sure to save the mask with an alpha channel.</p><div class="expn"><div class="expn-title" role="button" aria-expanded="false" aria-controls="expander-0"><div class="expn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.293 4.293a1 1 0 0 1 1.414 0l7 7a1 1 0 0 1 0 1.414l-7 7a1 1 0 0 1-1.414-1.414L14.586 12 8.293 5.707a1 1 0 0 1 0-1.414Z" clip-rule="evenodd"></path></svg></div><div class="expn-label">Add an alpha channel to a black and white mask</div></div><div class="expn-content hidden" id="expander-0"><p>You can modify a black and white image programmatically to add an alpha channel.</p><div class="code-sample dark-mode"><div class="code-sample-header"><div class="code-sample-title body-small">Add an alpha channel to a black and white mask</div><div class="exclude-from-copy"><button id="select-trigger-radix-:r17:" type="button" class="ICo9Y" data-variant="bare" data-size="sm" data-gutter-size="xs" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r19:" data-state="closed"><span class="RWOJJ">python</span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button></div><button type="button" class="Wmjjd Ry4P0" data-color="secondary" data-variant="bare" data-size="sm" data-gutter-size="xs" data-icon-size="sm"><span class="_6jr41"><span class="eRdFc" data-align="start"><span class="block beN8R"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2V5Zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2ZM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5Z" clip-rule="evenodd"></path></svg></span></span></span></button></div><div class="code-sample-body code-sample-body-small code-sample-body-with-header"><div class="code-block"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-python" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span><span class="react-syntax-highlighter-line-number">17
+</span><span class="react-syntax-highlighter-line-number">18
+</span><span class="react-syntax-highlighter-line-number">19
+</span><span class="react-syntax-highlighter-line-number">20
+</span><span class="react-syntax-highlighter-line-number">21
+</span></code><span><span class="hljs-keyword">from</span><span> PIL </span><span class="hljs-keyword">import</span><span> Image
+</span></span><span><span></span><span class="hljs-keyword">from</span><span> io </span><span class="hljs-keyword">import</span><span> BytesIO
+</span></span><span>
+</span><span><span></span><span class="hljs-comment"># 1. Load your black &amp; white mask as a grayscale image</span><span>
+</span></span><span><span>mask = Image.</span><span class="hljs-built_in">open</span><span>(img_path_mask).convert(</span><span class="hljs-string">"L"</span><span>)
+</span></span><span>
+</span><span><span></span><span class="hljs-comment"># 2. Convert it to RGBA so it has space for an alpha channel</span><span>
+</span></span><span><span>mask_rgba = mask.convert(</span><span class="hljs-string">"RGBA"</span><span>)
+</span></span><span>
+</span><span><span></span><span class="hljs-comment"># 3. Then use the mask itself to fill that alpha channel</span><span>
+</span></span><span>mask_rgba.putalpha(mask)
+</span><span>
+</span><span><span></span><span class="hljs-comment"># 4. Convert the mask into bytes</span><span>
+</span></span><span>buf = BytesIO()
+</span><span><span>mask_rgba.save(buf, </span><span class="hljs-built_in">format</span><span>=</span><span class="hljs-string">"PNG"</span><span>)
+</span></span><span>mask_bytes = buf.getvalue()
+</span><span>
+</span><span><span></span><span class="hljs-comment"># 5. Save the resulting file</span><span>
+</span></span><span><span>img_path_mask_alpha = </span><span class="hljs-string">"mask_alpha.png"</span><span>
+</span></span><span><span></span><span class="hljs-keyword">with</span><span> </span><span class="hljs-built_in">open</span><span>(img_path_mask_alpha, </span><span class="hljs-string">"wb"</span><span>) </span><span class="hljs-keyword">as</span><span> f:
+</span></span><span>    f.write(mask_bytes)</span></code></pre></div></div></div></div></div>
+
+
+
+<div class="anchor-heading-wrapper"><h2 id="customize-image-output" class="anchor-heading" data-name="customize-image-output">Customize Image Output<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h2></div>
+<p>You can configure the following output options:</p>
+<ul>
+<li><strong>Size</strong>: Image dimensions (e.g., <code>1024x1024</code>, <code>1024x1536</code>)</li>
+<li><strong>Quality</strong>: Rendering quality (e.g. <code>low</code>, <code>medium</code>, <code>high</code>)</li>
+<li><strong>Format</strong>: File output format</li>
+<li><strong>Compression</strong>: Compression level (0-100%) for JPEG and WebP formats</li>
+<li><strong>Background</strong>: Transparent or opaque</li>
+</ul><p><code>size</code>, <code>quality</code>, and <code>background</code> support the <code>auto</code> option, where the model will automatically select the best option based on the prompt.</p>
+
+
+<div class="anchor-heading-wrapper"><h3 id="size-and-quality-options" class="anchor-heading" data-name="size-and-quality-options">Size and quality options<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h3></div>
+<p>Square images with standard quality are the fastest to generate. The default size is 1024x1024 pixels.</p>
+<table><tr><td>Available sizes</td><td><ul>
+<li><code>1024x1024</code> (square)</li>
+<li><code>1536x1024</code> (landscape)</li>
+<li><code>1024x1536</code> (portrait)</li>
+<li><code>auto</code> (default)</li>
+</ul></td></tr><tr><td>Quality options</td><td><ul>
+<li><code>low</code></li>
+<li><code>medium</code></li>
+<li><code>high</code></li>
+<li><code>auto</code> (default)</li>
+</ul></td></tr></table>
+
+
+<div class="anchor-heading-wrapper"><h3 id="output-format" class="anchor-heading" data-name="output-format">Output format<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h3></div>
+<p>The Image API returns base64-encoded image data.
+The default format is <code>png</code>, but you can also request <code>jpeg</code> or <code>webp</code>.</p><p>If using <code>jpeg</code> or <code>webp</code>, you can also specify the <code>output_compression</code> parameter to control the compression level (0-100%). For example, <code>output_compression=50</code> will compress the image by 50%.</p>
+
+
+<div class="anchor-heading-wrapper"><h3 id="transparency" class="anchor-heading" data-name="transparency">Transparency<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h3></div><p>The <code>gpt-image-1</code> model supports transparent backgrounds.
+To enable transparency, set the <code>background</code> parameter to <code>transparent</code>.</p><p>It is only supported with the <code>png</code> and <code>webp</code> output formats.</p><div class="eyfSy"><div class="kQ2ry" data-variant="neutral"><div class="KtDSh"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path d="M13 12a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4Zm-1-2.5A1.25 1.25 0 1 0 12 7a1.25 1.25 0 0 0 0 2.5Z"></path><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" clip-rule="evenodd"></path></svg></div><div class="d3NUC"><div class="hFW1r"><div class="_9ohtt"><p>Transparency works best when setting the quality to <code>medium</code> or <code>high</code>.</p></div></div></div></div></div><div class="code-sample dark-mode"><div class="code-sample-header"><div class="code-sample-title body-small">Generate an image with a transparent background</div><div class="exclude-from-copy"><button id="select-trigger-radix-:r1a:" type="button" class="ICo9Y" data-variant="bare" data-size="sm" data-gutter-size="xs" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1c:" data-state="closed"><span class="RWOJJ">javascript</span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button></div><button type="button" class="Wmjjd Ry4P0" data-color="secondary" data-variant="bare" data-size="sm" data-gutter-size="xs" data-icon-size="sm"><span class="_6jr41"><span class="eRdFc" data-align="start"><span class="block beN8R"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2V5Zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v2ZM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5Z" clip-rule="evenodd"></path></svg></span></span></span></button></div><div class="code-sample-body code-sample-body-small code-sample-body-with-header"><div class="code-block"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-javascript" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span></code><span><span class="hljs-keyword">import</span><span> OpenAI </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"openai"</span><span>;
+</span></span><span><span></span><span class="hljs-keyword">import</span><span> fs </span><span class="hljs-keyword">from</span><span> </span><span class="hljs-string">"fs"</span><span>;
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> openai = </span><span class="hljs-keyword">new</span><span> OpenAI();
+</span></span><span>
+</span><span><span></span><span class="hljs-keyword">const</span><span> result = </span><span class="hljs-keyword">await</span><span> openai.images.generate({
+</span></span><span><span>    </span><span class="hljs-attr">model</span><span>: </span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span><span>    </span><span class="hljs-attr">prompt</span><span>: </span><span class="hljs-string">"Draw a 2D pixel art style sprite sheet of a tabby gray cat"</span><span>,
+</span></span><span><span>    </span><span class="hljs-attr">size</span><span>: </span><span class="hljs-string">"1024x1024"</span><span>,
+</span></span><span><span>    </span><span class="hljs-attr">background</span><span>: </span><span class="hljs-string">"transparent"</span><span>,
+</span></span><span><span>    </span><span class="hljs-attr">quality</span><span>: </span><span class="hljs-string">"high"</span><span>,
+</span></span><span>});
+</span><span>
+</span><span><span></span><span class="hljs-comment">// Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_base64 = result.data[</span><span class="hljs-number">0</span><span>].b64_json;
+</span></span><span><span></span><span class="hljs-keyword">const</span><span> image_bytes = Buffer.from(image_base64, </span><span class="hljs-string">"base64"</span><span>);
+</span></span><span><span>fs.writeFileSync(</span><span class="hljs-string">"sprite.png"</span><span>, image_bytes);</span></span></code></pre></div><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-python" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span><span class="react-syntax-highlighter-line-number">10
+</span><span class="react-syntax-highlighter-line-number">11
+</span><span class="react-syntax-highlighter-line-number">12
+</span><span class="react-syntax-highlighter-line-number">13
+</span><span class="react-syntax-highlighter-line-number">14
+</span><span class="react-syntax-highlighter-line-number">15
+</span><span class="react-syntax-highlighter-line-number">16
+</span><span class="react-syntax-highlighter-line-number">17
+</span><span class="react-syntax-highlighter-line-number">18
+</span></code><span><span class="hljs-keyword">from</span><span> openai </span><span class="hljs-keyword">import</span><span> OpenAI
+</span></span><span><span></span><span class="hljs-keyword">import</span><span> base64
+</span></span><span>client = OpenAI()
+</span><span>
+</span><span>result = client.images.generate(
+</span><span><span>    model=</span><span class="hljs-string">"gpt-image-1"</span><span>,
+</span></span><span><span>    prompt=</span><span class="hljs-string">"Draw a 2D pixel art style sprite sheet of a tabby gray cat"</span><span>,
+</span></span><span><span>    size=</span><span class="hljs-string">"1024x1024"</span><span>,
+</span></span><span><span>    background=</span><span class="hljs-string">"transparent"</span><span>,
+</span></span><span><span>    quality=</span><span class="hljs-string">"high"</span><span>,
+</span></span><span>)
+</span><span>
+</span><span><span>image_base64 = result.json()[</span><span class="hljs-string">"data"</span><span>][</span><span class="hljs-number">0</span><span>][</span><span class="hljs-string">"b64_json"</span><span>]
+</span></span><span>image_bytes = base64.b64decode(image_base64)
+</span><span>
+</span><span><span></span><span class="hljs-comment"># Save the image to a file</span><span>
+</span></span><span><span></span><span class="hljs-keyword">with</span><span> </span><span class="hljs-built_in">open</span><span>(</span><span class="hljs-string">"sprite.png"</span><span>, </span><span class="hljs-string">"wb"</span><span>) </span><span class="hljs-keyword">as</span><span> f:
+</span></span><span>    f.write(image_bytes)</span></code></pre></div><div class="code-block hidden"><pre class="hljs syntax-highlighter dark-mode code-sample-pre"><code class="language-bash" style="white-space: pre;"><code style="float: left; padding-right: 10px;"><span class="react-syntax-highlighter-line-number">1
+</span><span class="react-syntax-highlighter-line-number">2
+</span><span class="react-syntax-highlighter-line-number">3
+</span><span class="react-syntax-highlighter-line-number">4
+</span><span class="react-syntax-highlighter-line-number">5
+</span><span class="react-syntax-highlighter-line-number">6
+</span><span class="react-syntax-highlighter-line-number">7
+</span><span class="react-syntax-highlighter-line-number">8
+</span><span class="react-syntax-highlighter-line-number">9
+</span></code><span><span>curl -X POST </span><span class="hljs-string">"https://api.openai.com/v1/images"</span><span> \
+</span></span><span><span>    -H </span><span class="hljs-string">"Authorization: Bearer </span><span class="hljs-string hljs-variable">$OPENAI_API_KEY</span><span class="hljs-string">"</span><span> \
+</span></span><span><span>    -H </span><span class="hljs-string">"Content-type: application/json"</span><span> \
+</span></span><span><span>    -d </span><span class="hljs-string">'{
+</span></span><span class="hljs-string">        "prompt": "Draw a 2D pixel art style sprite sheet of a tabby gray cat",
+</span><span class="hljs-string">        "quality": "high",
+</span><span class="hljs-string">        "size": "1024x1024",
+</span><span class="hljs-string">        "background": "transparent"
+</span><span><span class="hljs-string">    }'</span><span> | jq -r </span><span class="hljs-string">'data[0].b64_json'</span><span> | base64 --decode &gt; sprite.png</span></span></code></pre></div></div></div>
+<div class="anchor-heading-wrapper"><h2 id="limitations" class="anchor-heading" data-name="limitations">Limitations<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h2></div>
+<p>The GPT-4o Image model is a powerful and versatile image generation model, but it still has some limitations to be aware of:</p><ul>
+<li><strong>Latency:</strong> Complex prompts may take up to 2 minutes to process.</li>
+<li><strong>Text Rendering:</strong> Although significantly improved over the DALL·E series, the model can still struggle with precise text placement and clarity.</li>
+<li><strong>Consistency:</strong> While capable of producing consistent imagery, the model may occasionally struggle to maintain visual consistency for recurring characters or brand elements across multiple generations.</li>
+<li><strong>Composition Control:</strong> Despite improved instruction following, the model may have difficulty placing elements precisely in structured or layout-sensitive compositions.</li>
+</ul><div class="anchor-heading-wrapper"><h3 id="content-moderation" class="anchor-heading" data-name="content-moderation">Content Moderation<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h3></div><p>All prompts and generated images are filtered in accordance with our <a href="https://labs.openai.com/policies/content-policy" target="_blank" rel="noopener noreferrer">content policy</a>.</p><p>For image generation using <code>gpt-image-1</code>, you can control moderation strictness with the <code>moderation</code> parameter. This parameter supports two values:</p><ul>
+<li><code>auto</code> (default): Standard filtering that seeks to limit creating certain categories of potentially age-inappropriate content.</li>
+<li><code>low</code>: Less restrictive filtering.</li>
+</ul>
+
+
+<div class="anchor-heading-wrapper"><h2 id="cost-and-latency" class="anchor-heading" data-name="cost-and-latency">Cost and latency<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24" class="anchor-heading-icon" role="presentation"><path fill-rule="evenodd" d="M18.293 5.707a4.657 4.657 0 0 0-6.586 0l-1 1a1 1 0 1 1-1.414-1.414l1-1a6.657 6.657 0 1 1 9.414 9.414l-1 1a1 1 0 0 1-1.414-1.414l1-1a4.657 4.657 0 0 0 0-6.586Zm-2.586 2.586a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Zm-9 1a1 1 0 0 1 0 1.414l-1 1a4.657 4.657 0 0 0 6.586 6.586l1-1a1 1 0 0 1 1.414 1.414l-1 1a6.657 6.657 0 1 1-9.414-9.414l1-1a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"></path></svg></h2></div>
+<p>This model generates images by first producing specialized image tokens. Both latency and eventual cost are proportional to the number of tokens required to render an image—larger image sizes and higher quality settings result in more tokens.</p><p>The number of tokens generated depends on image dimensions and quality:</p><table><thead><tr><th>Quality</th><th>Square (1024×1024)</th><th>Portrait (1024×1536)</th><th>Landscape (1536×1024)</th></tr></thead><tbody><tr><td>Low</td><td>272 tokens</td><td>408 tokens</td><td>400 tokens</td></tr><tr><td>Medium</td><td>1056 tokens</td><td>1584 tokens</td><td>1568 tokens</td></tr><tr><td>High</td><td>4160 tokens</td><td>6240 tokens</td><td>6208 tokens</td></tr></tbody></table><p>Note that you will also need to account for <a href="https://platform.openai.com/docs/guides/images-vision#gpt-image-1">input tokens</a>: text tokens for the prompt and image tokens for the input images if editing images.</p><p>So the final cost is the sum of:</p><ul>
+<li>input text tokens</li>
+<li>input image tokens if using the edits endpoint</li>
+<li>image output tokens</li>
+</ul><p>Refer to our <a href="https://platform.openai.com/pricing#image-generation">pricing page</a> for more information about price per text and image tokens.</p>
+
+<div class="docs-footer"><div class="print:hidden flex items-center gap-0.5"><span class="mr-2.5">Was this page useful?</span><button type="button" class="Wmjjd" data-color="secondary" data-variant="bare" data-size="md" data-gutter-size="2xs" data-icon-size="md" aria-label="Helpful" data-state="closed"><span class="_6jr41"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.132 2.504a1 1 0 0 1 .992-.496l.454.056a4 4 0 0 1 3.327 5.146L16.354 9h.718c2.638 0 4.553 2.508 3.86 5.053l-1.364 5A4 4 0 0 1 15.708 22H6a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3h2c.26 0 .5-.14.628-.364l3.504-6.132ZM10 20h5.709a2 2 0 0 0 1.93-1.474l1.363-5A2 2 0 0 0 17.072 11H15a1 1 0 0 1-.956-1.294l.95-3.084a2 2 0 0 0-1.462-2.537l-3.168 5.543A2.723 2.723 0 0 1 9 10.81V19a1 1 0 0 0 1 1Zm-3-9v8c0 .35.06.687.17 1H6a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h1Z" clip-rule="evenodd"></path></svg></span></button><button type="button" class="Wmjjd" data-color="secondary" data-variant="bare" data-size="md" data-gutter-size="2xs" data-icon-size="md" aria-label="Thumbs down" data-state="closed"><span class="_6jr41"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M11.873 21.496a1 1 0 0 1-.992.496l-.454-.056A4 4 0 0 1 7.1 16.79L7.65 15h-.718c-2.637 0-4.553-2.508-3.859-5.052l1.364-5A4 4 0 0 1 8.296 2h9.709a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-2c-.26 0-.5.14-.628.364l-3.504 6.132ZM14.005 4h-5.71a2 2 0 0 0-1.929 1.474l-1.363 5A2 2 0 0 0 6.933 13h2.072a1 1 0 0 1 .955 1.294l-.949 3.084a2 2 0 0 0 1.462 2.537l3.167-5.543a2.723 2.723 0 0 1 1.364-1.182V5a1 1 0 0 0-1-1Zm3 9V5c0-.35-.06-.687-.171-1h1.17a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1Z" clip-rule="evenodd"></path></svg></span></button></div></div></div></div><div class="XhE37"><div class="flex flex-col gap-2 min-w-[200px]"><div data-state="closed"><button id="select-trigger-radix-:r1n:" type="button" class="ICo9Y" data-block="" data-variant="fill" data-size="md" data-gutter-size="md" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1p:" data-state="closed"><span class="RWOJJ">GPT Image 1</span><div class="relative flex items-center gap-2"><svg width="8" height="11" viewBox="0 0 10 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="uF-Qb"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.34151 0.747423C4.71854 0.417526 5.28149 0.417526 5.65852 0.747423L9.65852 4.24742C10.0742 4.61111 10.1163 5.24287 9.75259 5.6585C9.38891 6.07414 8.75715 6.11626 8.34151 5.75258L5.00001 2.82877L1.65852 5.75258C1.24288 6.11626 0.61112 6.07414 0.247438 5.6585C-0.116244 5.24287 -0.0741267 4.61111 0.34151 4.24742L4.34151 0.747423ZM0.246065 10.3578C0.608879 9.94139 1.24055 9.89795 1.65695 10.2608L5.00001 13.1737L8.34308 10.2608C8.75948 9.89795 9.39115 9.94139 9.75396 10.3578C10.1168 10.7742 10.0733 11.4058 9.65695 11.7687L5.65695 15.2539C5.28043 15.582 4.7196 15.582 4.34308 15.2539L0.343082 11.7687C-0.0733128 11.4058 -0.116749 10.7742 0.246065 10.3578Z"></path></svg></div></button></div></div><nav class="PnGij"><div class="saDyQ"><div class="_8Szd1"><div class="NXaXx" style="--active-track-top: 170px; --active-track-height: 24px;"></div></div><ul class="x--yJ"><li class="MuoWh"><a class="hgAgD" data-active="false" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#overview"><span class="tkrBK" aria-hidden="true">Overview</span>Overview</a></li><li class="MuoWh"><a class="hgAgD" data-active="false" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#generate-images"><span class="tkrBK" aria-hidden="true">Generate images</span>Generate images</a></li><li class="MuoWh"><a class="hgAgD" data-active="false" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#edit-images"><span class="tkrBK" aria-hidden="true">Edit images</span>Edit images</a></li><li class="MuoWh"><a class="hgAgD" data-active="false" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#customize-image-output"><span class="tkrBK" aria-hidden="true">Customize image output</span>Customize image output</a></li><li class="MuoWh"><a class="hgAgD" data-active="false" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#limitations"><span class="tkrBK" aria-hidden="true">Limitations</span>Limitations</a></li><li class="MuoWh"><a class="hgAgD" data-active="true" href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1&amp;lang=javascript#cost-and-latency"><span class="tkrBK" aria-hidden="true">Cost and latency</span>Cost and latency</a></li></ul></div><div class="oMCz-"><div class="ZWASa"><a href="https://cookbook.openai.com/examples/generate_images_with_gpt_image" target="_blank" rel="noreferrer" class="yG9zP"><div class="Zp28T"><div class="_5uZg5">Image Generation cookbook</div><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 98 96" class="TqQ1n"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path></svg></div><div class="Q-wF1">Try out image generation and edits</div></a></div></div></nav></div></div></div></div></div></div></span></div></div></div></div></div></main><div data-testid="compliance-management-wrapper"></div></div><div class="layers-root"></div></div>
+      <script nonce="" nomodule="">!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+      <script nonce="" nomodule="" crossorigin="" id="vite-legacy-polyfill" src="./Image generation - OpenAI API_files/polyfills-legacy-BGdHySb8.js"></script>
+      <script nonce="" nomodule="" crossorigin="" id="vite-legacy-entry" data-src="/static/index-legacy-CI5xiPSI.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+    <script nonce="">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='a22aa5345f76668139afe028d39be6f3';d.innerHTML="window.__CF$cv$params={r:'9429f5762e334ab7',t:'MTc0NzcyNDQ0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='a22aa5345f76668139afe028d39be6f3';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./Image generation - OpenAI API_files/saved_resource.html"></iframe>
+
+<div class="CRjGu"></div><iframe id="intercom-frame" style="position: absolute !important; opacity: 0 !important; width: 1px !important; height: 1px !important; top: 0 !important; left: 0 !important; border: none !important; display: block !important; z-index: -1 !important; pointer-events: none;" aria-hidden="true" tabindex="-1" title="Intercom" src="./Image generation - OpenAI API_files/saved_resource(1).html"></iframe><div class="intercom-lightweight-app"><style id="intercom-lightweight-app-style" type="text/css">
+  @keyframes intercom-lightweight-app-launcher {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes intercom-lightweight-app-gradient {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes intercom-lightweight-app-messenger {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .intercom-lightweight-app {
+    position: fixed;
+    z-index: 2147483001;
+    width: 0;
+    height: 0;
+    font-family: intercom-font, "Helvetica Neue", "Apple Color Emoji", Helvetica, Arial, sans-serif;
+  }
+
+  .intercom-lightweight-app-gradient {
+    position: fixed;
+    z-index: 2147483002;
+    width: 500px;
+    height: 500px;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at bottom right,
+      rgba(29, 39, 54, 0.16) 0%,
+      rgba(29, 39, 54, 0) 72%);
+    animation: intercom-lightweight-app-gradient 200ms ease-out;
+  }
+
+  .intercom-lightweight-app-launcher {
+    position: fixed;
+    z-index: 2147483003;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none;
+    bottom: 20px;
+    right: 20px;
+    max-width: 48px;
+    width: 48px;
+    max-height: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #202123;
+    cursor: pointer;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.06), 0 2px 32px 0 rgba(0, 0, 0, 0.16);
+    transition: transform 167ms cubic-bezier(0.33, 0.00, 0.00, 1.00);
+    box-sizing: content-box;
+  }
+
+
+  .intercom-lightweight-app-launcher:hover {
+    transition: transform 250ms cubic-bezier(0.33, 0.00, 0.00, 1.00);
+    transform: scale(1.1)
+  }
+
+  .intercom-lightweight-app-launcher:active {
+    transform: scale(0.85);
+    transition: transform 134ms cubic-bezier(0.45, 0, 0.2, 1);
+  }
+
+
+  .intercom-lightweight-app-launcher:focus {
+    outline: none;
+
+    
+  }
+
+  .intercom-lightweight-app-launcher-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    transition: transform 100ms linear, opacity 80ms linear;
+  }
+
+  .intercom-lightweight-app-launcher-icon-open {
+    
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      
+  }
+
+  .intercom-lightweight-app-launcher-icon-open svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .intercom-lightweight-app-launcher-icon-open svg path {
+    fill: rgb(255, 255, 255);
+  }
+
+  .intercom-lightweight-app-launcher-icon-self-serve {
+    
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      
+  }
+
+  .intercom-lightweight-app-launcher-icon-self-serve svg {
+    height: 44px;
+  }
+
+  .intercom-lightweight-app-launcher-icon-self-serve svg path {
+    fill: rgb(255, 255, 255);
+  }
+
+  .intercom-lightweight-app-launcher-custom-icon-open {
+    max-height: 24px;
+    max-width: 24px;
+
+    
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      
+  }
+
+  .intercom-lightweight-app-launcher-icon-minimize {
+    
+        opacity: 0;
+        transform: rotate(-60deg) scale(0);
+      
+  }
+
+  .intercom-lightweight-app-launcher-icon-minimize svg path {
+    fill: rgb(255, 255, 255);
+  }
+
+  .intercom-lightweight-app-messenger {
+    position: fixed;
+    z-index: 2147483003;
+    overflow: hidden;
+    background-color: #ffffff;
+    animation: intercom-lightweight-app-messenger 250ms cubic-bezier(0, 1, 1, 1);
+    transform-origin: bottom right;
+
+    
+        width: 400px;
+        height: calc(100% - 40px);
+        max-height: 704px;
+        min-height: 250px;
+        right: 20px;
+        bottom: 20px;
+        box-shadow: 0 5px 40px rgba(0,0,0,0.16);
+      
+
+    border-radius: 16px;
+  }
+
+  .intercom-lightweight-app-messenger-header {
+    height: 64px;
+    border-bottom: none;
+    background: #ffffff;
+  }
+
+  .intercom-lightweight-app-messenger-footer{
+    position:absolute;
+    bottom:0;
+    width: 100%;
+    height: 80px;
+    background: #ffffff;
+    font-size: 14px;
+    line-height: 21px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+  }
+
+  @media print {
+    .intercom-lightweight-app {
+      display: none;
+    }
+  }
+</style></div></body></html>
