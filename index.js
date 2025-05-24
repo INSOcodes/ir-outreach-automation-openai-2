@@ -3,6 +3,7 @@ import fs from "fs";
 import axios from "axios";
 import OpenAI, { toFile } from "openai";
 import nodemailer from "nodemailer";
+import path from "path";
 
 // Load environment variables
 const {
@@ -48,6 +49,14 @@ async function readClientsFromCSV(filePath) {
     return clients;
 }
 
+async function getProductImages() {
+    const productImagesDir = "product_images";
+    const files = await fs.promises.readdir(productImagesDir);
+    return files
+        .filter(file => /\.(png|jpg|jpeg|webp)$/i.test(file))
+        .map(file => path.join(productImagesDir, file));
+}
+
 // Function to download image from URL
 async function downloadImage(url, outputPath) {
     const response = await axios({
@@ -58,17 +67,17 @@ async function downloadImage(url, outputPath) {
     return outputPath;
 }
 
-async function sendEmail(client, imagePath) {
+async function sendEmail(client, processedImages) {
     const mailOptions = {
         from: `"${EMAIL_FROM_NAME}" <${EMAIL_USER}>`,
         to: client.Email,
-        subject: "Your Customized Lid Design",
-        text: `Dear ${client.Name},\n\nWe are pleased to share your customized lid design. ` +
-            "Please find the attached image.\n\nBest regards,\n" + EMAIL_FROM_NAME,
-        attachments: [{
-            filename: "customized_lid.png",
+        subject: "Your Customized Product Images",
+        text: `Dear ${client.Name},\n\nWe are pleased to share your customized product images. ` +
+            "Please find the attached images.\n\nBest regards,\n" + EMAIL_FROM_NAME,
+        attachments: processedImages.map((imagePath, index) => ({
+            filename: `customized_product_${index + 1}.png`,
             path: imagePath,
-        }],
+        })),
     };
 
     try {
@@ -79,21 +88,14 @@ async function sendEmail(client, imagePath) {
     }
 }
 
-async function processClient(client, lidImage) {
-    const logoPath = `${client.Name.replace(/\s+/g, "_")}_logo.png`;
-    await downloadImage(client["Logo URL"], logoPath);
-
-    const clientLogo = await toFile(fs.createReadStream(logoPath), null, {
-        type: "image/png",
-    });
-
-    const prompt = "Add the client logo to the center of the lid, making it " +
+async function processImage(productImage, clientLogo) {
+    const prompt = "Add the client logo to the center of the product, making it " +
         "prominent but not overwhelming. Ensure the logo is clearly visible " +
         "and properly scaled.";
 
     const response = await openAIClient.images.edit({
         model: "gpt-image-1",
-        image: [lidImage, clientLogo],
+        image: [productImage, clientLogo],
         prompt,
         n: 1,
         size: "auto",
@@ -102,28 +104,58 @@ async function processClient(client, lidImage) {
 
     const imageBase64 = response.data[0].b64_json;
     const imageBytes = Buffer.from(imageBase64, "base64");
-    const outputPath = `${client.Name.replace(/\s+/g, "_")}_lid_with_logo.png`;
-    fs.writeFileSync(outputPath, imageBytes);
-
-    fs.unlinkSync(logoPath);
-    return outputPath;
+    return imageBytes;
 }
 
-async function addLogoToLid() {
-    try {
-        const clients = await readClientsFromCSV("clients.csv");
-        const lidImage = await toFile(fs.createReadStream("lid.png"), null, {
+async function processClient(client, productImages) {
+    const logoPath = `${client.Name.replace(/\s+/g, "_")}_logo.png`;
+    await downloadImage(client["Logo URL"], logoPath);
+
+    const clientLogo = await toFile(fs.createReadStream(logoPath), null, {
+        type: "image/png",
+    });
+
+    const processedImages = [];
+    for (const [index, productImagePath] of productImages.entries()) {
+        const productImage = await toFile(fs.createReadStream(productImagePath), null, {
             type: "image/png",
         });
 
+        const imageBytes = await processImage(productImage, clientLogo);
+        const outputPath = `${client.Name.replace(/\s+/g, "_")}_product_${index + 1}.png`;
+        fs.writeFileSync(outputPath, imageBytes);
+        processedImages.push(outputPath);
+
+        process.stdout.write(
+            `Processed product ${index + 1} for ${client.Name}\n`
+        );
+    }
+
+    fs.unlinkSync(logoPath);
+    return processedImages;
+}
+
+async function addLogoToProducts() {
+    try {
+        const clients = await readClientsFromCSV("clients.csv");
+        const productImages = await getProductImages();
+
+        if (productImages.length === 0) {
+            process.stderr.write("No product images found in product_images directory\n");
+            process.exit(1);
+        }
+
         for (const client of clients) {
-            const outputPath = await processClient(client, lidImage);
             process.stdout.write(
-                `Successfully processed ${client.Name}: ${outputPath}\n`
+                `Processing client ${client.Name}\n`
+            );
+            const processedImages = await processClient(client, productImages);
+            process.stdout.write(
+                `Successfully processed all products for ${client.Name}\n`
             );
 
             if (client.Email) {
-                await sendEmail(client, outputPath);
+                await sendEmail(client, processedImages);
             } else {
                 process.stderr.write(
                     `No email address provided for ${client.Name}\n`
@@ -137,4 +169,4 @@ async function addLogoToLid() {
 }
 
 // Run the function
-addLogoToLid();
+addLogoToProducts();

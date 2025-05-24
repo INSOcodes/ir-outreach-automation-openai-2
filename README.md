@@ -1,6 +1,6 @@
-# Lid Logo Editor
+# Product Logo Editor
 
-This application processes client logos and adds them to a lid image using OpenAI's API, then sends the result via email.
+This application processes client logos and adds them to product images using OpenAI's API, then sends the results via email.
 
 ## Setup
 
@@ -27,7 +27,9 @@ Note: For Gmail, you'll need to use an "App Password" instead of your regular pa
    - `Email`: Client's email address
    - `Logo URL`: URL to the client's logo image
 
-4. Place your base `lid.png` image in the root directory.
+4. Create a `product_images` directory and place your product images there:
+   - Supported formats: PNG, JPG, JPEG
+   - Each image will be processed with the client's logo
 
 ## Usage
 
@@ -39,11 +41,12 @@ npm start
 The application will:
 1. Read client information from `clients.csv`
 2. Download each client's logo
-3. Add the logo to the lid image using OpenAI's API
-4. Send the result to the client via email
+3. Process each product image with the client's logo using OpenAI's API
+4. Send all processed images to the client via email
 5. Clean up temporary files
 
 ## Output
 
-- Each client will receive an email with their customized lid image
-- The customized images will be saved in the root directory with the naming pattern: `{client_name}_lid_with_logo.png` 
+- Each client will receive an email with all their customized product images
+- The customized images will be saved in the root directory with the naming pattern: `{client_name}_product_{number}.png`
+- Temporary logo files are automatically cleaned up after processing 
