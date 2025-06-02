@@ -13,7 +13,6 @@ const {
     EMAIL_FROM_NAME = "Your Company Name",
 } = process.env;
 
-
 if (!OPENAI_API_KEY || !EMAIL_USER || !EMAIL_PASSWORD) {
     process.stderr.write(
         "Error: Missing required environment variables. " +
@@ -49,8 +48,7 @@ async function readClientsFromCSV(filePath) {
     return clients;
 }
 
-async function getProductImages() {
-    const productImagesDir = "product_images";
+async function getProductImages(productImagesDir = "product_images") {
     const files = await fs.promises.readdir(productImagesDir);
     return files
         .filter(file => /\.(png|jpg|jpeg|webp)$/i.test(file))
@@ -68,12 +66,16 @@ async function downloadImage(url, outputPath) {
 }
 
 async function sendEmail(client, processedImages) {
+    const mailTemplate = fs.readFileSync("email.txt", "utf8");
+    const mailText = mailTemplate
+        .replace("{{client_name}}", client.ContactName != "" ? client.ContactName : "there")
+        .replace("{{client_company_name}}", client.Name);
+
     const mailOptions = {
         from: `"${EMAIL_FROM_NAME}" <${EMAIL_USER}>`,
         to: client.Email,
-        subject: "Your Customized Product Images",
-        text: `Dear ${client.Name},\n\nWe are pleased to share your customized product images. ` +
-            "Please find the attached images.\n\nBest regards,\n" + EMAIL_FROM_NAME,
+        subject: "Aged & Charred Purchase Order - Cocktail Smoker Kits",
+        text: mailText,
         attachments: processedImages.map((imagePath, index) => ({
             filename: `customized_product_${index + 1}.png`,
             path: imagePath,
@@ -88,27 +90,35 @@ async function sendEmail(client, processedImages) {
     }
 }
 
-async function processImage(productImage, clientLogo) {
+async function processImage(productImage, clientLogo, productImageMask) {
+    if (productImageMask) {
+        console.log("Product image mask found");
+    }
     const prompt = "Add the client logo to the center of the product, making it " +
         "prominent but not overwhelming. Ensure the logo is clearly visible " +
-        "and properly scaled.";
+        "and properly scaled. Client logo should be small. Logo should be only added once." +
+        `${productImageMask ? " Place logo within mask." : ""}`;
 
-    const response = await openAIClient.images.edit({
+    const editObject = {
         model: "gpt-image-1",
         image: [productImage, clientLogo],
         prompt,
         n: 1,
         size: "auto",
-        quality: "low",
-    });
+        quality: "high",
+    };
+    if (productImageMask) {
+        editObject.mask = productImageMask;
+    }
+    const response = await openAIClient.images.edit(editObject);
 
     const imageBase64 = response.data[0].b64_json;
     const imageBytes = Buffer.from(imageBase64, "base64");
     return imageBytes;
 }
 
-async function processClient(client, productImages) {
-    const logoPath = `${client.Name.replace(/\s+/g, "_")}_logo.png`;
+async function processClient(client, productImages, productImageMasks) {
+    const logoPath = `downloaded_images/${client.Name.replace(/\s+/g, "_")}_logo.png`;
     await downloadImage(client["Logo URL"], logoPath);
 
     const clientLogo = await toFile(fs.createReadStream(logoPath), null, {
@@ -117,12 +127,22 @@ async function processClient(client, productImages) {
 
     const processedImages = [];
     for (const [index, productImagePath] of productImages.entries()) {
+        let productImageMask;
         const productImage = await toFile(fs.createReadStream(productImagePath), null, {
             type: "image/png",
         });
 
-        const imageBytes = await processImage(productImage, clientLogo);
-        const outputPath = `${client.Name.replace(/\s+/g, "_")}_product_${index + 1}.png`;
+        // Find mask file with the same name as the product image
+        const maskPath = productImageMasks.find(mask => mask.includes(productImagePath.split("/").pop().split(".")[0]));
+
+        if (maskPath) {
+            productImageMask = await toFile(fs.createReadStream(maskPath), null, {
+                type: "image/png",
+            });
+        }
+
+        const imageBytes = await processImage(productImage, clientLogo, productImageMask);
+        const outputPath = `generated_images/${client.Name.replace(/\s+/g, "-")}_Smoke-Lid-Kit_${index + 1}.png`;
         fs.writeFileSync(outputPath, imageBytes);
         processedImages.push(outputPath);
 
@@ -138,7 +158,9 @@ async function processClient(client, productImages) {
 async function addLogoToProducts() {
     try {
         const clients = await readClientsFromCSV("clients.csv");
-        const productImages = await getProductImages();
+        const productImages = await getProductImages("products");
+        const productImageMasks = await getProductImages("products_masks");
+        const productImagesNoConversion = await getProductImages("product_images_no_conversion");
 
         if (productImages.length === 0) {
             process.stderr.write("No product images found in product_images directory\n");
@@ -149,13 +171,13 @@ async function addLogoToProducts() {
             process.stdout.write(
                 `Processing client ${client.Name}\n`
             );
-            const processedImages = await processClient(client, productImages);
+            const processedImages = await processClient(client, productImages, productImageMasks);
             process.stdout.write(
                 `Successfully processed all products for ${client.Name}\n`
             );
 
             if (client.Email) {
-                await sendEmail(client, processedImages);
+                await sendEmail(client, [...processedImages, ...productImagesNoConversion]);
             } else {
                 process.stderr.write(
                     `No email address provided for ${client.Name}\n`
